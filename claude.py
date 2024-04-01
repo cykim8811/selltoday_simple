@@ -20,7 +20,7 @@ class ChatContext:
             self.messages.append({"role": "assistant", "content": force_format})
         response = client.messages.create(
             **{
-                "model": "claude-3-opus-20240229",
+                "model": "claude-3-haiku-20240307",
                 "max_tokens": 1000,
                 "temperature": 0.7,
                 "system": self.system_prompt,

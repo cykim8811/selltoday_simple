@@ -142,7 +142,7 @@ prompt5 = """제품의 상세페이지 작성을 위해 제품의 전반적인 �
 5. 24시간 지속되는 효과를 원하는 사람에게 추천
 """
 
-from ai import ChatContext, getUsage
+from claude import ChatContext, getUsage
 
 context = ChatContext(prompt0)
 
