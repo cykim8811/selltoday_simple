@@ -3,12 +3,16 @@ import json
 from claude import ChatContext, getUsage
 
 index = 0
+template = "01_07"
 
 with open("total_plan.txt", "r") as f:
     total_plan = f.read()
 
 with open("template_plan.json", "r") as f:
     template_plan = json.load(f)[index]
+
+with open(f"templates/{template}.json", "r") as f:
+    template_format = json.load(f)
 
 prompt = """
 안녕. 너는 세계 최고의 마케터이고, 온라인 상품 판매 시 제품 소개에 필요한 '상세페이지' 내
@@ -35,21 +39,27 @@ prompt = """
 
 # 출력 포맷
 {output_format}
+
+# 예시
+{example}
 """
 
 user_prompt = """위 템플릿 구조에 맞게 카피라이팅 작성을 해줘. 구조대로 작내가 제공한 내용에서 너무 새로운 내용을 추가하지 않길 바래.
 카피라이팅 작성 시 너무 AI가 만든게 아닌 사람이 만든것 처럼 제공해주면 고맙겠어."""
 
-output_format = """
-{
-    "one_message": "제품을 사고 싶게 만드는 한마디",
-    "product_name": "제품의 이름(영어)",
-    "client_message": "제품의 소구점 및 특징을 강조하는 세 줄의 한 문장으로 구성된 메시지",
-    "strong_message": "고객에게 진심을 전할 수 있도록 두 줄의 한 문장으로 구성된 메시지"
-}
-"""
 
-ai = ChatContext(prompt.format(total_plan=total_plan, template_plan=template_plan, output_format=output_format))
+output_format = ""
+for key in template_format:
+    output_format += f"- {key}: {template_format[key]["description"]}\n"
+    output_format += f"  - restriction: {template_format[key]['restriction']}\n"
+
+example = {
+    key: template_format[key]["examples"][0] for key in template_format
+}
+example = json.dumps(example, indent=4, ensure_ascii=False)
+
+
+ai = ChatContext(prompt.format(total_plan=total_plan, template_plan=template_plan, output_format=output_format, example=example))
 res = ai.ask(user_prompt, force_format="{\n    \"")
 
 print(res)
