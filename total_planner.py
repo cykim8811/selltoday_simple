@@ -1,7 +1,7 @@
 
 from claude import ChatContext, getUsage
 
-model = "haiku"
+model = "sonnet"
 exchange_rate = 1350
 
 
@@ -100,12 +100,12 @@ prompt4 = """위에서 선정한 템플릿들을 합쳐서 하나의 상세페�
 ```json
 [
     {
-        "template_name": "원메시저 제품 설명 템플릿",
+        "template_name": "원메세지 제품 설명 템플릿",
         "template_purpose": "제품 페이지 방문자의 관심을 즉각적으로 끌기 위함",
-        "template_info": "제품명: 화이트 스킨 미백크림\n제품의 장점들 : 1. 미백효과가 즉각적 2. 피부 저자극 크림 3. 효과가 24시간 지속",
-        "template_direction": "제품 이미지와 함께 짧고 강력한 원메시지를 시각적으로 돋보이게 디자인."
+        "template_info": "제품명: 화이트 스킨 미백크림. 제품의 장점은 미백효과가 즉각적이며, 피부에 저자극 크림이고, 효과가 24시간 지속된다는 것이다.",
+        "template_direction": "제품 이미지와 함께 짧고 강력한 원메세지를 시각적으로 돋보이게 디자인."
     },
-    ...
+    ...(max 15개)
 ]
 ```
 
@@ -177,7 +177,7 @@ def total_planner():
     with open("total_plan.txt", "w") as f:
         f.write(total_plan)
 
-    template_plan = context_fork.ask(prompt4, max_tokens=2500)
+    template_plan = context_fork.ask(prompt4, max_tokens=3500, force_format="[\n  {\n    \"")
 
     with open("template_plan.txt", "w") as f:
         f.write(template_plan)
@@ -221,7 +221,7 @@ def total_planner():
     with open("template_plan.json", "w") as f:
         json.dump(template_plans, f, ensure_ascii=False, indent=4)
 
-    print(f"[Total Planner] Usage: {getUsage() * exchange_rate:.1f원}")
+    print(f"[Total Planner] Usage: {getUsage() * exchange_rate:.1f}원")
 
 if __name__ == "__main__":
     total_planner()

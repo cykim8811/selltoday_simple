@@ -5,12 +5,12 @@ import json
 
 from claude import ChatContext, getUsage
 
-model = "haiku"
+model = "sonnet"
 
 exchange_rate = 1350
 
-target_template = "01_06"
-# target_template = None
+# target_template = "01_07"
+target_template = None
 
 available_templates = {
     '원메세지 제품 설명 템플릿': ['01_04', '01_07'],
@@ -40,10 +40,10 @@ def template_planner():
     for template_plan in template_plans:
         template_name = template_plan["template_name"]
         if template_name not in available_templates:
-            print(f"Template {template_name} does not exist")
+            print(f"Template '{template_name}' does not exist")
             continue
         if not available_templates[template_name]:
-            print(f"Template {template_name} is empty")
+            print(f"Template '{template_name}' is empty")
             continue
         
         shuffled_templates = available_templates[template_name]
