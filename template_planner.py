@@ -9,6 +9,9 @@ model = "haiku"
 
 exchange_rate = 1350
 
+target_template = "01_06"
+# target_template = None
+
 available_templates = {
     '원메세지 제품 설명 템플릿': ['01_04', '01_07'],
     '제품 주요 성분 나열 템플릿': ['01_02', '02_04', '02_05', '02_06'],
@@ -47,6 +50,8 @@ def template_planner():
         random.shuffle(shuffled_templates)
 
         for template in shuffled_templates:
+            if target_template and template != target_template:
+                continue
             if os.path.exists(f"templates/{template}.json"):
                 break
         else:
