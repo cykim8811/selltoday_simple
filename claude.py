@@ -4,14 +4,31 @@ client = anthropic.Anthropic()
 
 usage = 0
 cost = {
-    "input": 15 / 1000000,
-    "output": 75 / 1000000
+    "claude-3-haiku-20240307": {
+        "input": 0.25 / 1000000,
+        "output": 1.25 / 1000000
+    },
+    "claude-3-sonnet-20240229": {
+        "input": 3 / 1000000,
+        "output": 15 / 1000000
+    },
+    "claude-3-opus-20240229": {
+        "input": 15 / 1000000,
+        "output": 75 / 1000000
+    }
+}
+
+models = {
+    "opus": "claude-3-opus-20240229",
+    "sonnet": "claude-3-sonnet-20240229",
+    "haiku": "claude-3-haiku-20240307",
 }
 
 class ChatContext:
-    def __init__(self, system_prompt):
+    def __init__(self, system_prompt, model="haiku"):
         self.messages = []
         self.system_prompt = system_prompt
+        self.model = model if model not in models else models[model]
     
     def ask(self, message, force_format=None, **kwargs):
         global usage
@@ -20,7 +37,7 @@ class ChatContext:
             self.messages.append({"role": "assistant", "content": force_format})
         response = client.messages.create(
             **{
-                "model": "claude-3-haiku-20240307",
+                "model": self.model,
                 "max_tokens": 1000,
                 "temperature": 0.7,
                 "system": self.system_prompt,
@@ -28,7 +45,7 @@ class ChatContext:
                 **kwargs
             }
         )
-        usage += cost["input"] * response.usage.input_tokens + cost["output"] * response.usage.output_tokens
+        usage += cost[self.model]["input"] * response.usage.input_tokens + cost[self.model]["output"] * response.usage.output_tokens
         if force_format:
             self.messages.pop()
             self.messages.append({"role": "assistant", "content": force_format + response.content[0].text})
