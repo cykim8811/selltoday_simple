@@ -1,0 +1,16 @@
+{
+    "product_name": {
+        "description": "제품의 이름",
+        "restriction": "한줄로된 제품의 이름, 15자 이내 ",
+        "examples": [
+            "그로섬 제로 뮤스 크림"
+        ]
+    },
+    "real_review_sentence": {
+        "description": "제품에 대한 강점과 고객의 리뷰가 존재한다는 점을 어필하는 문장 두개",
+        "restriction": "완결된 두 문장 ,각 줄당 한문장, 15글자 이내, \\n로 구분",
+        "examples": [
+            "탄력증가로 처짐없는 피부\\n사용한 고객님들의 만족 리얼 후기를 만나보세요!."
+        ]
+    }
+}

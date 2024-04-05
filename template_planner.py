@@ -24,7 +24,13 @@ available_templates = {
     '정품 인증 템플릿': ['04_05'],
     '사용 방법 템플릿': ['04_07', '06_07'],
     '임상 실험 검증 템플릿': ['05_05'],
-    '사용 전/후 비교 템플릿': ['06_03']
+    '사용 전/후 비교 템플릿': ['06_03'],
+    '배송 관련 템플릿': [],
+    '프로모션 템플릿': [],
+    '누적 판매량 강조 템플릿': [],
+    'FAQ 템플릿': [],
+    '추천 템플릿': [],
+    '교환 및 반품 안내 템플릿': [],
 }
 
 def template_planner():
@@ -52,13 +58,13 @@ def template_planner():
         for template in shuffled_templates:
             if target_template and template != target_template:
                 continue
-            if os.path.exists(f"templates/{template}.json"):
+            if os.path.exists(f"templates/format/{template}.json"):
                 break
         else:
             print(f"Template '{template_name}' is not available")
             continue
 
-        with open(f"templates/{template}.json", "r") as f:
+        with open(f"templates/format/{template}.json", "r") as f:
             template_format = json.load(f)
 
         prompt = """
@@ -72,11 +78,6 @@ def template_planner():
         방법을 알려줘. 너가 작성한 내용 토대로 인터넷에 상세페이지로 사용할 거니까 그에 맞는 적절한 말투로 작성을 
         부탁한다. 이제 템플릿 구조와 두 기획서를 제공할께.
         
-        # 템플릿의 구조
-        - 템플릿 종류: 원메세지 제품 설명 템플릿
-        - 제품명: 제품명
-        - 제품의 핵심을 담은 한 문장: 제품의 특징과 강점을 한문장에 담은 원메시지
-        - 제품의 이미지
 
         #전체 상세페이지 기획서
         {total_plan}
@@ -114,14 +115,17 @@ def template_planner():
         res = ai.ask(user_prompt, force_format="{\n    \"")
 
         try:
-            total_result.append(json.loads(res))
+            total_result.append({
+                "template": template,
+                "data": json.loads(res)
+            })
             print(f"Template '{template}' completed")
         except:
             print(f"Fails to parse the result of template '{template}'")
         finally:
             print(f"- Usage: {getUsage() * exchange_rate:.1f}원")
         
-    with open("result.json", "w") as f:
+    with open("data.json", "w") as f:
         json.dump(total_result, f, ensure_ascii=False, indent=4)
 
 if __name__ == "__main__":

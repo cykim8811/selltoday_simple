@@ -8,7 +8,7 @@
     },
     "product_name": {
         "description": "제품의 이름(영어)",
-        "restriction": "두 부분으로 구성, \\n으로 구분, 한 줄에 15자 이내",
+        "restriction": "두 부분으로 구성, \\n으로 구분, 한 줄에 15자 이내, 영어이름으로 작성",
         "examples": [
             "UHNNAM\\n'PU'ER Tea"
         ]

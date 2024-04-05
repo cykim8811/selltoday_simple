@@ -1,0 +1,23 @@
+{
+    "brand_name": {
+        "description": "브랜드명이 들어갑니다.",
+        "restriction": "영문, 한글 다 가능, 20자 이내 ",
+        "examples": [
+            "Louis Vuitton"
+        ]
+    },
+    "before_after_sentence": {
+        "description": "제품의 사용 전 후 달라지는 점을 두문장, 두줄로",
+        "restriction": "줄당 완결된 한 문장, 두 줄로 구성, 줄당 15글자 이내, \\n로 구분 ",
+        "examples": [
+            "우리 가구는 안전합니다.\\더 안전한 원료를 사용합니다."
+        ]
+    },
+    "before_after_message": {
+        "description": "제품의 사용 전 후의 차이점을 표현하는 한 문장의 메세지",
+        "restriction": "명사형으로 끝남, 두 줄로 구성, \\n로 구분, 줄당 12글자 이내 ",
+        "examples": [
+            "안전한 원료 사용으로\\n아기도 사용가능한 가구"
+        ]
+    }
+}

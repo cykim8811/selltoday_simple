@@ -1,0 +1,37 @@
+{
+    "test_pass_sentence": {
+        "description": "제품이 어떤 임상 실험을 검증받았는지 한문장, 두줄로.",
+        "restriction": "완결된 하나의 문장, 두줄로 구성, 줄당 15글자 이내, \\n로 구분 ",
+        "examples": [
+            "피부 민감성 테스트\\n NHS 임상 테스트 통과하였습니다."
+        ]
+    },
+    "safe_message": {
+        "description": "안전하다는 점을 한줄의 한 문장으로 표현",
+        "restriction": "완결된 한 문장 ,15글자 이내",
+        "examples": [
+            "피부 저민감 제품을 사용해보세요."
+        ]
+    },
+    "test_result_message": {
+        "description": "제품이 임상 실험에서 어떤 점을 어떤 지표로 통과했는지, 한문장 두줄로",
+        "restriction": "두 줄로 구성, 줄당 15글자 이내, \\n로 구분 ",
+        "examples": [
+            "피부 저자극 테스트 \\n 99.9%의 저자극도 검증완료."
+        ]
+    },
+    "safe_sentence": {
+        "description": "통과해서 제품이 어떤 안전성을 가졌는지 한문장, 두줄",
+        "restriction": "두 줄로 구성, 줄당 15글자 이내, \\n로 구분, 완결된 한문장으로줘. 종결된 문장으로. ",
+        "examples": [
+            "무자극 원료 사용으로 \\n 피부 자극 걱정 없습니다."
+        ]
+    },
+    "safe_keyword": {
+        "description": "제품의 검증된 안전성을 키워드로",
+        "restriction": "한줄, 명사형으로 끝남 10글자 이내",
+        "examples": [
+            "피부 무자극, 무해성 원료"
+        ]
+    }
+}

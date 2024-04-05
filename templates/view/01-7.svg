@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_07" data-name=" 07" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 1500">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        isolation: isolate;
+      }
+
+      .cls-1, .cls-3, .cls-4 {
+        fill: #161616;
+      }
+
+      .cls-1, .cls-5 {
+        font-family: S-CoreDream-4Regular, 'S-Core Dream';
+        font-size: 35px;
+      }
+
+      .cls-3 {
+        font-size: 120px;
+      }
+
+      .cls-3, .cls-4 {
+        font-family: NotoSans, 'Noto Sans';
+      }
+
+      .cls-4 {
+        font-size: 42px;
+      }
+
+      .cls-6 {
+        fill: #f3f0eb;
+        stroke-width: 0px;
+      }
+
+      .cls-5 {
+        fill: #3d3d3d;
+      }
+    </style>
+  </defs>
+  <image id="_배경" data-name="배경" class="cls-2" width="1000" height="1500" xlink:href="01-7-1.png"/>
+  <rect id="_회색" data-name="회색" class="cls-6" y="629" width="1000" height="870"/>
+  <g id="_4번텍스트" data-name=" 4번텍스트" class="cls-2">
+    <text class="cls-5" transform="translate(500 1082.7)"><tspan x="0" y="0">빠른 흡수력과 깊은 진정 효과로</tspan></text>
+    <text class="cls-5" transform="translate(468.5 1127.1)"><tspan x="0" y="0">24시간 지속되는 보습을 선사하는</tspan></text>
+    <text class="cls-5" transform="translate(558.5 1171.4)"><tspan x="0" y="0">프리미엄 올인원 크림입니다.</tspan></text>
+    <text class="cls-5" transform="translate(539.7 1250.7)"><tspan x="0" y="0">고객님의 건강한 피부를 위해</tspan></text>
+    <text class="cls-5" transform="translate(659.3 1288.6)"><tspan x="0" y="0">최선을 다하겠습니다.</tspan></text>
+  </g>
+  <text id="_3번텍스트" data-name=" 3번텍스트" class="cls-4" transform="translate(176.5 951.2) rotate(-90)"><tspan x="0" y="0">Premium Fragrance</tspan></text>
+  <g id="_2번텍스트" data-name=" 2번텍스트" class="cls-2">
+    <text class="cls-3" transform="translate(78.9 289)"><tspan x="0" y="0">Red Blemish</tspan></text>
+    <text class="cls-3" transform="translate(78.9 433)"><tspan x="0" y="0">For Men</tspan></text>
+  </g>
+  <text id="_1번텍스트" data-name=" 1번텍스트" class="cls-1" transform="translate(85 154.7)"><tspan x="0" y="0">남성 피부를 위한 올인원 솔루션</tspan></text>
+</svg>

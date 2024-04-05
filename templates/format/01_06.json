@@ -1,0 +1,30 @@
+{
+    "strength_point_sentence": {
+        "description": "제품의 전체적인 장점들을 표현하는 한 문장의 메세지.",
+        "restriction": "명사형으로 끝남, 두 줄로 구성, \\n로 구분, 줄당 11글자 이내 ",
+        "examples": [
+            "품격높은 향기를 구현하기\\n위해 자연에서 얻은 원료"
+        ]
+    },
+    "strength_point_message1": {
+        "description": "제품의 장점 중 1번 장점을 표현하는 한 문장의 메세지",
+        "restriction": "명사형으로 끝남, 두 줄로 구성, \\n로 구분, 줄당 9글자 이내 ",
+        "examples": [
+            "곡물에서 발효한\\n식물성 에탄올 베이스"
+        ]
+    },
+    "strength_point_message2": {
+        "description": "제품의 장점 중 2번 장점을 표현하는 한 문장의 메세지",
+        "restriction": "명사형으로 끝남, 두 줄로 구성, \\n로 구분, 줄당 9글자 이내 ",
+        "examples": [
+            "전문 연구소 기술로\\n구현한 최적의 발향력"
+        ]
+    },
+    "strength_point_message3": {
+        "description": "제품의 장점 중 3번 장점을 표현하는 한 문장의 메세지",
+        "restriction": "명사형으로 끝남, 두 줄로 구성, \\n로 구분, 줄당 9글자 이내 ",
+        "examples": [
+            "인테리어를 고급스럽게\\n만드는 오브제"
+        ]
+    }
+}

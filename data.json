@@ -1,0 +1,71 @@
+[
+    {
+        "template": "01_07",
+        "data": {
+            "one_message": "피부 고민 해결의 마스터키",
+            "product_name": "Red Blemish\\nFor Men Cream",
+            "client_message": "스트레스와 노화로 지친 당신의 피부를 위해\\n레드 블레미쉬 포 맨 크림이 함께합니다\\n식물성 세라마이드로 24시간 보습을 선사합니다",
+            "strong_message": "건강하고 활력 넘치는 피부로\\n자신감을 되찾으세요"
+        }
+    },
+    {
+        "template": "06_03",
+        "data": {
+            "brand_name": "레드 블레미쉬 포맨",
+            "before_after_sentence": "피부 트러블로 고민하셨죠?\\레드 블레미쉬로 맑은 피부!",
+            "before_after_message": "24시간 지속 보습\\n피부 고민 해결사"
+        }
+    },
+    {
+        "template": "01_06",
+        "data": {
+            "strength_point_sentence": "피부 고민 해결사\\n24시간 지속 보습 솔루션",
+            "strength_point_message1": "트러블, 노화,\\n건조함 해결",
+            "strength_point_message2": "24시간 지속되는\\n깊은 보습력",
+            "strength_point_message3": "식물성 세라마이드\\n끈적임없는 보습"
+        }
+    },
+    {
+        "template": "01_02",
+        "data": {
+            "simple_desc": "피부고민 해결을 위한 주요 성분 정보",
+            "product_name": "Red Blemish\\nFor Men All-in-One Cream",
+            "title1": "Ceramide",
+            "desc1": "식물유래 세라마이드가\\n피부 보습력을 높여줍니다.",
+            "img1": "botanical",
+            "title2": "Nosome",
+            "desc2": "니오좀 기술로 보습이\\n피부 깊숙이 전달됩니다.",
+            "img2": "skincare",
+            "title3": "Soothing",
+            "desc3": "진정 성분이 피부 자극을\\n완화시켜 건강한 피부로",
+            "img3": "natural"
+        }
+    },
+    {
+        "template": "05_05",
+        "data": {
+            "test_pass_sentence": "엄격한 임상실험을 통해\\n 안전성과 효능을 입증했습니다.",
+            "safe_message": "민감한 피부도 안심하고 사용할 수 있습니다.",
+            "test_result_message": "24시간 지속보습력\\n 니오좀 피부 침투력 검증 완료",
+            "safe_sentence": "식물성 순한 성분으로\\n 피부 자극 없이 안전합니다.",
+            "safe_keyword": "임상실험 검증, 무자극"
+        }
+    },
+    {
+        "template": "03_06",
+        "data": {
+            "product_name": "레드블레미쉬올인원크림",
+            "real_review_sentence": "고객 리뷰로 입증된 효과\\n실제 사용자들의 생생한 후기를 확인해보세요!"
+        }
+    },
+    {
+        "template": "04_07",
+        "data": {
+            "how_to_use_sentence": "간편한 단계로 촉촉한 보습",
+            "how_to_use_message1": "깨끗한 얼굴에\n적당량을 덜어\n바르세요.",
+            "how_to_use_message2": "손바닥에 펴\n얼굴 전체에\n골고루 펴바르세요.",
+            "how_to_use_message3": "아침저녁으로\n꾸준히 사용하면\n효과가 배가됩니다.",
+            "warning_message": "사용 전 체크: 피부 테스트 완료하셨나요?\\n눈 주변 사용 시 주의하세요.\\n영유아 손이 닿지 않게 주의하세요.\\n고열이나 저온 장소 보관은 삼가세요."
+        }
+    }
+]
