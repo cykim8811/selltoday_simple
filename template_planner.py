@@ -1,4 +1,3 @@
-
 import os
 import random
 import json
@@ -13,32 +12,34 @@ exchange_rate = 1350
 target_template = None
 
 available_templates = {
-    '원메세지 제품 설명 템플릿': ['01_04', '01_07'],
-    '제품 주요 성분 나열 템플릿': ['01_02', '02_04', '02_05', '02_06'],
-    '제품 장점 나열 템플릿': ['01_06', '03_03', '04_06'],
-    '귀사 유사 제품 홍보 템플릿': ['01_08', '05_07'],
-    '자세한 제품 설명 템플릿': ['01_09', '05_08'],
-    '브랜드 소개 템플릿': ['06_02'],
-    '상품 구성 템플릿': [],
-    '구매 후기 템플릿': ['03_06'],
-    '정품 인증 템플릿': ['04_05'],
-    '사용 방법 템플릿': ['04_07', '06_07'],
-    '임상 실험 검증 템플릿': ['05_05'],
-    '사용 전/후 비교 템플릿': ['06_03'],
-    '배송 관련 템플릿': [],
-    '프로모션 템플릿': [],
-    '누적 판매량 강조 템플릿': [],
-    'FAQ 템플릿': [],
-    '추천 템플릿': [],
-    '교환 및 반품 안내 템플릿': [],
+    "원메세지 제품 설명 템플릿": ["01_04", "01_07"],
+    "제품 주요 성분 나열 템플릿": ["01_02", "02_04", "02_05", "02_06"],
+    "제품 장점 나열 템플릿": ["01_06", "03_03", "04_06"],
+    "귀사 유사 제품 홍보 템플릿": ["01_08", "05_07"],
+    "자세한 제품 설명 템플릿": ["01_09", "05_08"],
+    "브랜드 소개 템플릿": ["06_02"],
+    "상품 구성 템플릿": [],
+    "구매 후기 템플릿": ["03_06"],
+    "정품 인증 템플릿": [],
+    "사용 방법 템플릿": ["04_07", "06_07"],
+    "임상 실험 검증 템플릿": ["04_05", "05_05"],
+    "사용 전/후 비교 템플릿": ["06_03"],
+    "배송 관련 템플릿": [],
+    "프로모션 템플릿": [],
+    "누적 판매량 강조 템플릿": [],
+    "FAQ 템플릿": [],
+    "추천 템플릿": [],
+    "교환 및 반품 안내 템플릿": [],
+    "유사 제품 홍보 템플릿": [],
 }
+
 
 def template_planner():
 
-    with open("total_plan.txt", "r") as f:
+    with open("total_plan.txt", "r", encoding="UTF8") as f:
         total_plan = f.read()
 
-    with open("template_plan.json", "r") as f:
+    with open("template_plan.json", "r", encoding="UTF8") as f:
         template_plans = json.load(f)
 
     total_result = []
@@ -51,7 +52,7 @@ def template_planner():
         if not available_templates[template_name]:
             print(f"Template '{template_name}' is empty")
             continue
-        
+
         shuffled_templates = available_templates[template_name]
         random.shuffle(shuffled_templates)
 
@@ -64,7 +65,7 @@ def template_planner():
             print(f"Template '{template_name}' is not available")
             continue
 
-        with open(f"templates/format/{template}.json", "r") as f:
+        with open(f"templates/format/{template}.json", "r", encoding="UTF8") as f:
             template_format = json.load(f)
 
         prompt = """
@@ -98,35 +99,35 @@ def template_planner():
         주의: 출력은 json 형식으로 제공하며 json 데이터 외의 내용은 포함하지 않아야 한다.
         """
 
-
         output_format = ""
         for key in template_format:
-            output_format += f"- {key}: {template_format[key]["description"]}\n"
+            output_format += f"- {key}: {template_format[key]['description']}\n"
             output_format += f"  - restriction: {template_format[key]['restriction']}\n"
 
-        example = {
-            key: template_format[key]["examples"][0] for key in template_format
-        }
+        example = {key: template_format[key]["examples"][0] for key in template_format}
         example = json.dumps(example, indent=4, ensure_ascii=False)
 
-        final_prompt = prompt.format(total_plan=total_plan, template_plan=template_plan, output_format=output_format, example=example)
+        final_prompt = prompt.format(
+            total_plan=total_plan,
+            template_plan=template_plan,
+            output_format=output_format,
+            example=example,
+        )
 
         ai = ChatContext(final_prompt, model=model)
-        res = ai.ask(user_prompt, force_format="{\n    \"")
+        res = ai.ask(user_prompt, force_format='{\n    "')
 
         try:
-            total_result.append({
-                "template": template,
-                "data": json.loads(res)
-            })
+            total_result.append({"template": template, "data": json.loads(res)})
             print(f"Template '{template}' completed")
         except:
             print(f"Fails to parse the result of template '{template}'")
         finally:
             print(f"- Usage: {getUsage() * exchange_rate:.1f}원")
-        
-    with open("data.json", "w") as f:
+
+    with open("data.json", "w", encoding="UTF8") as f:
         json.dump(total_result, f, ensure_ascii=False, indent=4)
+
 
 if __name__ == "__main__":
     template_planner()

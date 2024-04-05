@@ -1,4 +1,3 @@
-
 from claude import ChatContext, getUsage
 
 model = "sonnet"
@@ -152,44 +151,44 @@ prompt5 = """제품의 상세페이지 작성을 위해 제품의 전반적인 �
 5. 24시간 지속되는 효과를 원하는 사람에게 추천
 """
 
+
 def total_planner():
     context = ChatContext(prompt0, model=model)
 
-    with open("input.txt", "r") as f:
+    with open("input.txt", "r", encoding="UTF8") as f:
         input_data = f.read()
 
     res1 = context.ask(prompt1.format(input_data=input_data))
-    with open("res1.txt", "w") as f:
+    with open("res1.txt", "w", encoding="UTF8") as f:
         f.write(res1)
 
     res2 = context.ask(prompt2)
-    with open("res2.txt", "w") as f:
+    with open("res2.txt", "w", encoding="UTF8") as f:
         f.write(res2)
 
     res3 = context.ask(prompt3)
-    with open("res3.txt", "w") as f:
+    with open("res3.txt", "w", encoding="UTF8") as f:
         f.write(res3)
 
     context_fork = context.copy()
 
     total_plan = context.ask(prompt5)
 
-    with open("total_plan.txt", "w") as f:
+    with open("total_plan.txt", "w", encoding="UTF8") as f:
         f.write(total_plan)
 
-    template_plan = context_fork.ask(prompt4, max_tokens=3500, force_format="[\n  {\n    \"")
+    template_plan = context_fork.ask(
+        prompt4, max_tokens=3500, force_format='[\n  {\n    "'
+    )
 
-    with open("template_plan.txt", "w") as f:
+    with open("template_plan.txt", "w", encoding="UTF8") as f:
         f.write(template_plan)
 
-
-
-    with open("total_plan.txt", "r") as f:
+    with open("total_plan.txt", "r", encoding="UTF8") as f:
         total_plan = f.read()
 
-    with open("template_plan.txt", "r") as f:
+    with open("template_plan.txt", "r", encoding="UTF8") as f:
         template_plan = f.read()
-
 
     # # parse template plan
     # template_plan = template_plan.split("\n\n")
@@ -214,14 +213,16 @@ def total_planner():
     #     current_plan["template_info"] = l[1]
     #     current_plan["template_direction"] = l[2]
     #     template_plans.append(current_plan)
-        
+
     import json
+
     template_plans = json.loads(template_plan)
 
-    with open("template_plan.json", "w") as f:
+    with open("template_plan.json", "w", encoding="UTF8") as f:
         json.dump(template_plans, f, ensure_ascii=False, indent=4)
 
     print(f"[Total Planner] Usage: {getUsage() * exchange_rate:.1f}원")
+
 
 if __name__ == "__main__":
     total_planner()
