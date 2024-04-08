@@ -12,7 +12,7 @@
         "template": "06_03",
         "data": {
             "brand_name": "레드 블레미쉬 포맨",
-            "before_after_sentence": "피부 트러블로 고민하셨죠?\\레드 블레미쉬로 맑은 피부!",
+            "before_after_sentence": "피부 트러블로 고민하셨죠?\\n레드 블레미쉬로 맑은 피부!",
             "before_after_message": "24시간 지속 보습\\n피부 고민 해결사"
         }
     },

@@ -9,11 +9,9 @@ for single_data in total_data:
     template = single_data["template"]
     data = single_data["data"]
 
-    # import templates/filler/{template}.py
-    glob = {}
-    with open(f"templates/filler/{template}.py", "r") as file:
-        exec(file.read(), glob)
-    fill = glob["fill"]
+    import importlib
+    module = importlib.import_module(f"templates.filler.{template}")
+    fill = module.fill
 
     # import templates/view/{template}.svg
     svg_name = template.split("_")

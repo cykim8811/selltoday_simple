@@ -31,6 +31,7 @@ available_templates = {
     'FAQ 템플릿': [],
     '추천 템플릿': [],
     '교환 및 반품 안내 템플릿': [],
+    '유사 제품 홍보 템플릿': [],
 }
 
 def template_planner():
@@ -101,7 +102,7 @@ def template_planner():
 
         output_format = ""
         for key in template_format:
-            output_format += f"- {key}: {template_format[key]["description"]}\n"
+            output_format += f"- {key}: {template_format[key]['description']}\n"
             output_format += f"  - restriction: {template_format[key]['restriction']}\n"
 
         example = {
