@@ -4,12 +4,18 @@ import xml.etree.ElementTree as ET
 import random
 CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 used_ids = set()
-def random_id():
-    new_id = ''.join(random.choices(CHARS, k=8))
-    while new_id in used_ids:
-        new_id = ''.join(random.choices(CHARS, k=8))
-    used_ids.add(new_id)
-    return new_id
+
+class IdGenerator:
+    def __init__(self):
+        self.used_ids = set()
+        self.last_id = {}
+    
+    def generate_id(self, element):
+        tagname = element.tag.split('}')[-1]
+        if tagname not in self.last_id:
+            self.last_id[tagname] = 0
+        self.last_id[tagname] += 1
+        return f"{tagname}_{self.last_id[tagname]}"
 
 def svg_to_json(svg_data):
     # Parse the SVG file
@@ -19,9 +25,11 @@ def svg_to_json(svg_data):
 
     raw_strings = {}
 
+    id_generator = IdGenerator()
+
     # Recursive function to process each element and its children
     def process_element(element):
-        element_id = random_id()  # Generate a unique ID for each element
+        element_id = id_generator.generate_id(element)  # Generate a unique ID for each element
         # Set uuid to 0 if tag is svg
         if element.tag.split('}')[-1] == 'svg':
             element_id = "0"
@@ -47,7 +55,7 @@ def svg_to_json(svg_data):
 
         # Process children if they exist
         if element.text and element.text.strip():
-            text_id = random_id()
+            text_id = id_generator.generate_id(element)
             raw_strings[text_id] = element.text
             element_data['children'].append(text_id)
 
@@ -56,7 +64,7 @@ def svg_to_json(svg_data):
             element_data['children'].append(child_id)
             elements[child_id] = child_data
             if child.tail and child.tail.strip():
-                text_id = random_id()
+                text_id = id_generator.generate_id(child)
                 raw_strings[text_id] = child.tail
                 element_data['children'].append(text_id)
 
@@ -92,6 +100,7 @@ def json_to_svg(json_data):
         element_children = element_data['children']
 
         res = f"<{element_tag} "
+        element_props["data-idx"] = element_id
         for prop, value in element_props.items():
             prop = prop.replace('className', 'class')
             if prop == 'style':

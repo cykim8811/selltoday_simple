@@ -32,10 +32,11 @@ def find_id_by_data(view, data):
     return None
 
 def replace_data(view, data, new_data):
+    if type(new_data) is not list:
+        new_data = [new_data]
     for idx, element in view["elements"].items():
         if compare_strings(element, data):
-            view["elements"][idx] = new_data
-            break
+            view["elements"][idx] = new_data.pop(0)
     else:
         print(f"Data not found: {data}")
     return view
@@ -49,5 +50,8 @@ def fill(view, data):
     replace_data(view, "친환경 목재를 사용하여 안전합니다.", data["before_after_message"].split("\\n")[0])
     replace_data(view, '친환경목재 등급', "“" + data["before_after_message"].split("\\n")[1])
     replace_data(view, 'SEO', "")
+
+    view["elements"]["image_2"]["props"]["data-template"] = True
+    view["elements"]["image_3"]["props"]["data-template"] = True
 
     return view

@@ -23,6 +23,14 @@ for single_data in total_data:
     # fill the view
     view = fill(svg_data, data)
 
+    # # Convert all images to https://via.placeholder.com/640x480
+    for idx, element in view["elements"].items():
+        if type(element) is not dict:
+            continue
+        if "href" in element["props"] and "data-template" in element["props"]:
+            view["elements"][idx]["props"]["href"] = "https://via.placeholder.com/640x480"
+            element["props"]["preserveAspectRatio"] = "xMidYMid slice"
+
     # convert the view to SVG
     svg_output = json_to_svg(view)
     with open(f"output/{template}.svg", "w") as file:

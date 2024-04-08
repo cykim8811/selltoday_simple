@@ -93,12 +93,4 @@ def fill(view, data):
     replace_data(view, "숲 속의 검은색", [data[f"desc{t+1}"].split("\\n")[0] for t in range(3)])
     replace_data(view, "묵직한 우디, 차분", [data[f"desc{t+1}"].split("\\n")[1] for t in range(3)])
 
-    # replace all links to placeholder
-    for idx, element in view["elements"].items():
-        if type(element) is not dict:
-            continue
-        if "href" in element["props"]:
-            print(type(element["props"]["href"]))
-            view["elements"][idx]["props"]["href"] = "https://via.placeholder.com/640x482"
-
     return view
