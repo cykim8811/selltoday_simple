@@ -28,7 +28,12 @@ for single_data in total_data:
         if type(element) is not dict:
             continue
         if "href" in element["props"] and "data-template" in element["props"]:
-            view["elements"][idx]["props"]["href"] = "https://via.placeholder.com/640x480"
+            if view["elements"][idx]["props"]["width"] and view["elements"][idx]["props"]["height"]:
+                w = view["elements"][idx]["props"]["width"].split(".")[0]
+                h = view["elements"][idx]["props"]["height"].split(".")[0]
+                view["elements"][idx]["props"]["href"] = f"https://via.placeholder.com/{w}x{h}"
+            else:
+                view["elements"][idx]["props"]["href"] = "https://via.placeholder.com/640x480"
             element["props"]["preserveAspectRatio"] = "xMidYMid slice"
 
     # convert the view to SVG

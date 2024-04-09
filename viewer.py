@@ -37,8 +37,8 @@ import os
 from utils import svg_to_json, json_to_svg
 def construct_whole():
     templates_text = ""
-    # templates_format = "<img src='output/{template}.svg' style='width: 50%; border: 2px solid #ddd;'>"
-    # templates_format = "<div style='width: 50%; height: 1050px; border: 2px solid #ddd;'>{svg_data}</div>"
+    # templates_format = "<img src='output/{template}.svg' style='width: 560px; height: auto; border: 2px solid #ddd;'>"
+    # templates_format = "<div style='width: 560px; height: auto; border: 2px solid #ddd;'>{svg_data}</div>"
     templates_format = "<object data='output/{template}.svg' type='image/svg+xml' style='width: 560px; height: auto; border: 2px solid #ddd;'></object>"
     with open("data.json", "r") as f:
         template_plans = json.load(f)

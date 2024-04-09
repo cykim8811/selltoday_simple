@@ -103,6 +103,8 @@ def json_to_svg(json_data):
         element_props["data-idx"] = element_id
         for prop, value in element_props.items():
             prop = prop.replace('className', 'class')
+            # Change camelCase to kebab-case
+            prop = ''.join([f"-{c.lower()}" if c.isupper() else c for c in prop]) if prop not in ['viewBox', 'preserveAspectRatio'] else prop
             if prop == 'style':
                 res += f"{prop}='"
                 for style_prop, style_value in value.items():

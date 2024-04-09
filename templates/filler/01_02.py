@@ -93,4 +93,8 @@ def fill(view, data):
     replace_data(view, "숲 속의 검은색", [data[f"desc{t+1}"].split("\\n")[0] for t in range(3)])
     replace_data(view, "묵직한 우디, 차분", [data[f"desc{t+1}"].split("\\n")[1] for t in range(3)])
 
+    view["elements"]["image_2"]["props"]["data-template"] = True
+    view["elements"]["image_3"]["props"]["data-template"] = True
+    view["elements"]["image_4"]["props"]["data-template"] = True
+
     return view
