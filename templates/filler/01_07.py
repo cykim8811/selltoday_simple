@@ -36,5 +36,7 @@ def fill(view, data):
     replace_data(view, "프리미엄 프레그런스 디퓨저는 오직", data["strong_message"].split("\\n")[0])
     replace_data(view, "품격있는 향기로 고객님께 다가갑니다.", data["strong_message"].split("\\n")[1])
 
+    view["elements"]["image_2"]["props"]["data-template"] = True
+
     return view
 

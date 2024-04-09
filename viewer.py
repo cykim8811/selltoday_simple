@@ -4,9 +4,46 @@ html = """
 <html>
     <head>
         <title>Selltoday</title>
+        <script>
+            // Enable image file drag-and-drop to <image> inside <svg> in <object>
+            document.addEventListener('DOMContentLoaded', function() {
+                var objects = document.getElementsByTagName('object');
+                for (const object of objects) {
+                    object.addEventListener('load', function() {
+                        var svg = object.contentDocument;
+                        let currentImageTarget = {
+                            target: null
+                        };
+                        svg.addEventListener('mousemove', function(e) {
+                            const tagName = e.target.tagName;
+                            if (tagName === 'image') {
+                                currentImageTarget.target = e.target;
+                            }
+                        });
+                        object.addEventListener('dragover', function(e) {
+                            e.preventDefault();
+                        });
+                        object.addEventListener('drop', function(e) {
+                            e.preventDefault();
+                            if (currentImageTarget.target) {
+                                const file = e.dataTransfer.files[0];
+                                const reader = new FileReader();
+                                reader.onload = function(e) {
+                                    currentImageTarget.target.setAttribute('href', e.target.result);
+                                };
+                                reader.readAsDataURL(file);
+                            }
+                            console.log(e);
+                            console.log(currentImageTarget.target);
+                        });
+                    });
+                }
+            });
+            
+        </script>
     </head>
     <body>
-        <div style="display: flex; flex-direction: column; align-items: center;">
+        <div id="template_container" style="display: flex; flex-direction: column; align-items: center;">
             {templates}
         </div>
     </body>
@@ -49,7 +86,7 @@ def construct_whole():
             # templates_text += templates_format.format(svg_data=svg_raw_data)
             templates_text += templates_format.format(template=template_id)
         
-    return html.format(templates=templates_text)
+    return html.replace("{templates}", templates_text)
 
 
 from fastapi import FastAPI, Request
@@ -95,8 +132,8 @@ async def read_item(template_id: str):
     data["elements"]["font_text"] = fonts_text
     svg_output = json_to_svg(data)
     print(type(svg_output))
-    from fastapi.responses import StreamingResponse
-    return StreamingResponse(content=svg_output, media_type="image/svg+xml")
+    from fastapi.responses import Response
+    return Response(content=svg_output, media_type="image/svg+xml")
 
 @app.get("/output/{file_name}")
 async def read_item(file_name: str):
